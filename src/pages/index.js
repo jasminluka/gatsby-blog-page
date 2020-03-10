@@ -8,22 +8,24 @@ import {
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Post from '../components/Post'
+import Sidebar from '../components/Sidebar'
 
 const IndexPage = ({ data }) => (
   <Layout>
     <SEO title="Home" />
+    <h1>Home Page</h1>
     <Row>
       <Col md="8">
         <div>
           {
             data.allMarkdownRemark.edges.map(({ node }) => (
-              <Post {...node.frontmatter} body={node.excerpt} />
+              <Post key={node.id} {...node.frontmatter} body={node.excerpt} />
             ))
           }
         </div>
       </Col>
       <Col md="4">
-        <div style={{ width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,.4" }}></div>
+        <Sidebar />
       </Col>
     </Row>
   </Layout>
@@ -36,6 +38,7 @@ export const query = graphql`
     allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
       edges {
         node {
+          id
           frontmatter {
             author
             date(formatString: "MMM Do YYYY")

@@ -33,7 +33,7 @@ const Post = ({ title, author, path, date, tags, image, body }) => {
         <ul className="post-tags">
           {
             tags.map(tag => (
-              <li>
+              <li key={tag}>
                 <Link to={`/tag/${slugify(tag)}`}><Badge color="primary" className="text-uppercase">{tag}</Badge></Link>
               </li>
             ))
