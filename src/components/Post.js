@@ -6,10 +6,13 @@ import {
   CardTitle,
   CardText,
   CardSubtitle,
-  CardBody
+  CardBody,
+  Badge
 } from 'reactstrap'
 
-const Post = ({ title, author, path, date, image, body }) => {
+import { slugify } from '../utils/utilities'
+
+const Post = ({ title, author, path, date, tags, image, body }) => {
   return (
     <Card>
       <Link to={path}>
@@ -27,6 +30,15 @@ const Post = ({ title, author, path, date, image, body }) => {
         <CardText>
           {body}
         </CardText>
+        <ul className="post-tags">
+          {
+            tags.map(tag => (
+              <li>
+                <Link to={`/tag/${slugify(tag)}`}><Badge color="primary" className="text-uppercase">{tag}</Badge></Link>
+              </li>
+            ))
+          }
+        </ul>
         <Link to={path} className="btn btn-outline-primary float-right">Read More</Link>
       </CardBody>
     </Card>

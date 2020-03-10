@@ -41,6 +41,7 @@ export const query = graphql`
             date(formatString: "MMM Do YYYY")
             path
             title
+            tags
             image {
               childImageSharp {
                 fluid(maxWidth: 600) {
