@@ -1,33 +1,20 @@
 import React from "react"
 import { graphql } from 'gatsby'
-import { 
-  Row,
-  Col
-} from 'reactstrap'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Post from '../components/Post'
-import Sidebar from '../components/Sidebar'
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <Layout title="Blog Page">
     <SEO title="Home" />
-    <h1>Home Page</h1>
-    <Row>
-      <Col md="8">
-        <div>
-          {
-            data.allMarkdownRemark.edges.map(({ node }) => (
-              <Post key={node.id} {...node.frontmatter} body={node.excerpt} slug={node.fields.slug} />
-            ))
-          }
-        </div>
-      </Col>
-      <Col md="4">
-        <Sidebar />
-      </Col>
-    </Row>
+    <div>
+      {
+        data.allMarkdownRemark.edges.map(({ node }) => (
+          <Post key={node.id} {...node.frontmatter} body={node.excerpt} slug={node.fields.slug} />
+        ))
+      }
+    </div>
   </Layout>
 )
 
