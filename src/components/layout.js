@@ -19,7 +19,7 @@ import Sidebar from './Sidebar'
 
 import "../styles/index.scss"
 
-const Layout = ({ title, children }) => {
+const Layout = ({ title, postAuthor, authorImage, children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -41,7 +41,7 @@ const Layout = ({ title, children }) => {
             {children}
           </Col>
           <Col md="4">
-            <Sidebar />
+            <Sidebar postAuthor={postAuthor} authorImage={authorImage} />
           </Col>
         </Row>
       </div>

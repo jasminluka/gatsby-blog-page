@@ -12,15 +12,21 @@ import Layout from "../components/layout"
 import Seo from '../components/seo'
 
 import { slugify } from '../utils/utilities'
+// import authors from '../utils/authors'
 
 const SinglePost = ({ data, pageContext }) => {
   const post = data.markdownRemark.frontmatter;
+  // const author = authors.find(a => a.name === post.author);
 
   // We can access page context slug with pageContext prop
   // console.log(pageContext.slug)
 
   return (
-    <Layout title={post.title}>
+    <Layout
+      title={post.title}
+      postAuthor={pageContext.author}
+      authorImage={data.file.childImageSharp.fluid}
+    >
       <Seo title={post.title} />
       <Card>
         <Img className="card-image-top" fluid={post.image.childImageSharp.fluid} />
@@ -49,7 +55,7 @@ const SinglePost = ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-  query blogPostBySlug($slug: String!) {
+  query blogPostBySlug($slug: String!, $image: String!) {
     markdownRemark(fields: { slug: { eq: $slug }}) {
       id
       html
@@ -64,6 +70,13 @@ export const query = graphql`
               ...GatsbyImageSharpFluid
             }
           }
+        }
+      }
+    }
+    file(relativePath: { eq: $image }) {
+      childImageSharp {
+        fluid(maxWidth: 300) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
