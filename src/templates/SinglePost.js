@@ -7,6 +7,7 @@ import {
   CardSubtitle,
   Badge
 } from 'reactstrap'
+import { DiscussionEmbed } from 'disqus-react'
 
 import Layout from "../components/layout"
 import Seo from '../components/seo'
@@ -17,6 +18,14 @@ import { slugify } from '../utils/utilities'
 const SinglePost = ({ data, pageContext }) => {
   const post = data.markdownRemark.frontmatter;
   // const author = authors.find(a => a.name === post.author);
+  const baseUrl = 'https://gatsbyblog.co.uk/';
+
+  const disqusShortName = 'blogpage-2';
+  const disqusConfig = {
+    url: baseUrl + pageContext.slug,
+    identifier: data.markdownRemark.id,
+    title: post.title,
+};
 
   // We can access page context slug with pageContext prop
   // console.log(pageContext.slug)
@@ -50,6 +59,23 @@ const SinglePost = ({ data, pageContext }) => {
           </ul>
         </CardBody>
       </Card>
+      <h1 className="text-center">
+        Share this post
+      </h1>
+      <div className="text-center social-share-links">
+        <ul>
+          <li>
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${pageContext.slug}`} target="_blank" rel="noopener noreferrer" className="facebook"><i className="fab fa-facebook-f fa-2x"></i></a>
+          </li>
+          <li>
+            <a href={`https://www.twitter.com/share?url=${baseUrl}${pageContext.slug}&text=${post.title}&via=${post.author}`} target="_blank" rel="noopener noreferrer" className="twitter"><i className="fab fa-twitter fa-2x"></i></a>
+          </li>
+          <li>
+            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}${pageContext.slug}`} target="_blank" rel="noopener noreferrer" className="linkedin"><i className="fab fa-linkedin fa-2x"></i></a>
+          </li>
+        </ul>
+      </div>
+      <DiscussionEmbed shortname={disqusShortName} config={disqusConfig} />
     </Layout>
   )
 }
