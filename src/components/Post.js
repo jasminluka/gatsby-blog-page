@@ -12,15 +12,15 @@ import {
 
 import { slugify } from '../utils/utilities'
 
-const Post = ({ title, author, path, date, tags, image, body }) => {
+const Post = ({ title, author, slug, date, tags, image, body }) => {
   return (
     <Card>
-      <Link to={path}>
+      <Link to={slug}>
         <Img className="card-image-top" fluid={image.childImageSharp.fluid} />
       </Link>
       <CardBody>
         <CardTitle>
-          <Link to={path}>
+          <Link to={slug}>
             {title}
           </Link>
         </CardTitle>
@@ -39,7 +39,7 @@ const Post = ({ title, author, path, date, tags, image, body }) => {
             ))
           }
         </ul>
-        <Link to={path} className="btn btn-outline-primary float-right">Read More</Link>
+        <Link to={slug} className="btn btn-outline-primary float-right">Read More</Link>
       </CardBody>
     </Card>
   )

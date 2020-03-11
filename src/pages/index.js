@@ -19,7 +19,7 @@ const IndexPage = ({ data }) => (
         <div>
           {
             data.allMarkdownRemark.edges.map(({ node }) => (
-              <Post key={node.id} {...node.frontmatter} body={node.excerpt} />
+              <Post key={node.id} {...node.frontmatter} body={node.excerpt} slug={node.fields.slug} />
             ))
           }
         </div>
@@ -35,14 +35,13 @@ export default IndexPage
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: {fields: frontmatter___date, order: DESC}) {
+    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
           id
           frontmatter {
             author
             date(formatString: "MMM Do YYYY")
-            path
             title
             tags
             image {
@@ -54,6 +53,9 @@ export const query = graphql`
             }
           }
           excerpt
+          fields {
+            slug
+          }
         }
       }
     }

@@ -10,27 +10,27 @@ const Footer = () => {
       <div className="footer-social-links">
         <ul className="social-links-list">
           <li>
-            <a href="https://www.facebook.com/jasminluka007" target="_blank" rel="noopenner noreferrer" className="facebook">
+            <a href="https://www.facebook.com/jasminluka007" target="_blank" rel="noopener noreferrer" className="facebook">
               <i className="fab fa-facebook-f fa-2x"></i>
             </a>
           </li>
           <li>
-            <a href="https://www.twitter.com/jasminluka007" target="_blank" rel="noopenner noreferrer" className="twitter">
+            <a href="https://www.twitter.com/jasminluka007" target="_blank" rel="noopener noreferrer" className="twitter">
               <i className="fab fa-twitter fa-2x"></i>
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/jasminluka" target="_blank" rel="noopenner noreferrer" className="instagram">
+            <a href="https://www.instagram.com/jasminluka" target="_blank" rel="noopener noreferrer" className="instagram">
               <i className="fab fa-instagram fa-2x"></i>
             </a>
           </li>
           <li>
-            <a href="https://www.google.com" target="_blank" rel="noopenner noreferrer" className="google">
+            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" className="google">
               <i className="fab fa-google fa-2x"></i>
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/jasminluka" target="_blank" rel="noopenner noreferrer" className="linkedin">
+            <a href="https://www.linkedin.com/jasminluka" target="_blank" rel="noopener noreferrer" className="linkedin">
               <i className="fab fa-linkedin fa-2x"></i>
             </a>
           </li>
