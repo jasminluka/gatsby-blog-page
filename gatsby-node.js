@@ -135,7 +135,8 @@ exports.createPages = ({ actions, graphql }) => {
         component: templates.authorPost,
         context: {
           authorName: author.name,
-          authorImage: author.image
+          authorImage: author.image,
+          author
         }
       });
     });

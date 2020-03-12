@@ -41,7 +41,7 @@ const SinglePost = ({ data, pageContext: { slug, author } }) => {
         <Img className="card-image-top" fluid={post.image.childImageSharp.fluid} />
         <CardBody>
           <CardSubtitle>
-            <span className="text-info">{post.date}</span> by <span className="text-info">{post.author}</span>
+            <span className="text-info">{post.date}</span> by <span className="text-info"><Link to={`/author/${slugify(post.author)}`}>{post.author}</Link></span>
           </CardSubtitle>
           
           <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />

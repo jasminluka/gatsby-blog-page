@@ -25,7 +25,7 @@ const Post = ({ title, author, slug, date, tags, image, body }) => {
           </Link>
         </CardTitle>
         <CardSubtitle>
-          <span className="text-info">{date}</span> by <span className="text-info">{author}</span>
+          <span className="text-info">{date}</span> by <span className="text-info"><Link to={`/author/${slugify(author)}`}>{author}</Link></span>
         </CardSubtitle>
         <CardText>
           {body}

@@ -4,14 +4,14 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Post from '../components/Post'
 
-const AuthorPost = ({ data, pageContext: { authorName } }) => {
+const AuthorPost = ({ data, pageContext: { author } }) => {
   const { totalCount } = data.allMarkdownRemark;
-  const pageTitle = `${totalCount} post${totalCount === 1 ? '' : 's'} by "${authorName}"`
+  const pageTitle = `${totalCount} post${totalCount === 1 ? '' : 's'} by "${author.name}"`
 
   return (
     <Layout
       title={pageTitle}
-      postAuthor={authorName}
+      postAuthor={author}
       authorImage={data.file.childImageSharp.fluid}
     >
       {
