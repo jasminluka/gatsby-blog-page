@@ -29,7 +29,7 @@ export default TagPost
 export const query = graphql`
   query tagPost($tag: String!) {
     allMarkdownRemark(
-      sort: { fields: frontmatter___date, order: DESC },
+      sort: { fields: frontmatter___date, order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
       totalCount

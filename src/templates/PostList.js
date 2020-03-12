@@ -1,16 +1,16 @@
-import React from "react"
+import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
 import Post from '../components/Post'
 
-const IndexPage = ({ data }) => (
-  <Layout title="Blog Page">
-    <SEO title="Home" />
-    <div>
+const PostList = ({ data, pageContext: { currentPage } }) => {
+  const posts = data.allMarkdownRemark.edges;
+
+  return (
+    <Layout title={`Page: ${currentPage}`}>
       {
-        data.allMarkdownRemark.edges.map(({ node }) => (
+        posts.map(({ node }) => (
           <Post
             key={node.id}
             {...node.frontmatter}
@@ -19,38 +19,39 @@ const IndexPage = ({ data }) => (
           />
         ))
       }
-    </div>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
-export default IndexPage
+export default PostList
 
 export const query = graphql`
-  query {
+  query postList($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
       sort: { fields: frontmatter___date, order: DESC }
-      limit: 2
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {
           id
           frontmatter {
-            author
-            date(formatString: "MMM Do YYYY")
             title
+            date(formatString: "MMM Do YYYY")
+            author
             tags
             image {
               childImageSharp {
-                fluid(maxWidth: 600) {
+                fluid(maxWidth: 650, maxHeight: 370) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
           }
-          excerpt
           fields {
             slug
           }
+          excerpt
         }
       }
     }

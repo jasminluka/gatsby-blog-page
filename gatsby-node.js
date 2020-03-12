@@ -23,7 +23,8 @@ exports.createPages = ({ actions, graphql }) => {
   const templates = {
     singlePostTemplate : path.resolve('src/templates/SinglePost.js'),
     tagsPage: path.resolve('src/templates/TagsPage.js'),
-    tagPost: path.resolve('src/templates/TagPost.js')
+    tagPost: path.resolve('src/templates/TagPost.js'),
+    postList: path.resolve('src/templates/PostList.js'),
   }
 
   return graphql(`
@@ -102,6 +103,28 @@ exports.createPages = ({ actions, graphql }) => {
           tag
         }
       });
-    })
+    });
+
+
+    // Create Post List page
+    const postsPerPage = 2;
+    const numberOfPages = Math.ceil(posts.length / postsPerPage);
+
+    Array.from({ length: numberOfPages }).forEach((_, index) => {
+      const isFirstPage = index === 0;
+      const currentPage = index + 1;
+
+      if (isFirstPage) return;
+
+      createPage({
+        path: `/page/${currentPage}`,
+        component: templates.postList,
+        context: {
+          limit: postsPerPage,
+          skip: index * postsPerPage,
+          currentPage
+        }
+      });
+    });
   })
 }
