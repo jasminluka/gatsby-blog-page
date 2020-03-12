@@ -15,25 +15,25 @@ import Seo from '../components/seo'
 import { slugify } from '../utils/utilities'
 // import authors from '../utils/authors'
 
-const SinglePost = ({ data, pageContext }) => {
+const SinglePost = ({ data, pageContext: { slug, author } }) => {
   const post = data.markdownRemark.frontmatter;
   // const author = authors.find(a => a.name === post.author);
   const baseUrl = 'https://gatsbyblog.co.uk/';
 
   const disqusShortName = 'blogpage-2';
   const disqusConfig = {
-    url: baseUrl + pageContext.slug,
+    url: baseUrl + slug,
     identifier: data.markdownRemark.id,
     title: post.title,
 };
 
   // We can access page context slug with pageContext prop
-  // console.log(pageContext.slug)
+  // console.log(slug)
 
   return (
     <Layout
       title={post.title}
-      postAuthor={pageContext.author}
+      postAuthor={author}
       authorImage={data.file.childImageSharp.fluid}
     >
       <Seo title={post.title} />
@@ -65,13 +65,13 @@ const SinglePost = ({ data, pageContext }) => {
       <div className="text-center social-share-links">
         <ul>
           <li>
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${pageContext.slug}`} target="_blank" rel="noopener noreferrer" className="facebook"><i className="fab fa-facebook-f fa-2x"></i></a>
+            <a href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${slug}`} target="_blank" rel="noopener noreferrer" className="facebook"><i className="fab fa-facebook-f fa-2x"></i></a>
           </li>
           <li>
-            <a href={`https://www.twitter.com/share?url=${baseUrl}${pageContext.slug}&text=${post.title}&via=${post.author}`} target="_blank" rel="noopener noreferrer" className="twitter"><i className="fab fa-twitter fa-2x"></i></a>
+            <a href={`https://www.twitter.com/share?url=${baseUrl}${slug}&text=${post.title}&via=${post.author}`} target="_blank" rel="noopener noreferrer" className="twitter"><i className="fab fa-twitter fa-2x"></i></a>
           </li>
           <li>
-            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}${pageContext.slug}`} target="_blank" rel="noopener noreferrer" className="linkedin"><i className="fab fa-linkedin fa-2x"></i></a>
+            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${baseUrl}${slug}`} target="_blank" rel="noopener noreferrer" className="linkedin"><i className="fab fa-linkedin fa-2x"></i></a>
           </li>
         </ul>
       </div>
