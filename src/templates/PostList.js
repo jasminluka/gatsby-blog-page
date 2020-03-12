@@ -3,8 +3,9 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 import Post from '../components/Post'
+import PaginationLinks from '../components/PaginationLinks'
 
-const PostList = ({ data, pageContext: { currentPage } }) => {
+const PostList = ({ data, pageContext: { currentPage, numberOfPages } }) => {
   const posts = data.allMarkdownRemark.edges;
 
   return (
@@ -19,6 +20,7 @@ const PostList = ({ data, pageContext: { currentPage } }) => {
           />
         ))
       }
+      <PaginationLinks currentPage={currentPage} numberOfPages={numberOfPages} />
     </Layout>
   )
 }
