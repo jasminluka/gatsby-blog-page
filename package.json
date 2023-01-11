@@ -16,7 +16,7 @@
     "gatsby-plugin-sass": "^2.1.30",
     "gatsby-plugin-sharp": "^2.4.3",
     "gatsby-source-filesystem": "^2.1.46",
-    "gatsby-transformer-remark": "^2.6.56",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^2.3.13",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
